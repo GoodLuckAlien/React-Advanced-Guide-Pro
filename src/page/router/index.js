@@ -148,4 +148,6 @@ function CustomRouter(props){
 
 
 
-export default Index
+export default ()=>{
+    return <div></div>
+}

@@ -14,7 +14,7 @@
     "@babel/plugin-syntax-class-properties": "^7.12.1",
     "@types/react": "^16.9.25",
     "@vue/reactivity": "^3.0.7",
-    "antd": "^4.15.4",
+    "antd": "^4.16.3",
     "proptypes": "^1.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",

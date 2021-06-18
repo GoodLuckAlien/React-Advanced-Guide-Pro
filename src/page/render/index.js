@@ -115,7 +115,7 @@ import React, { useCallback, useMemo, useState , memo } from 'react'
 // }
 
 
-// shouldComponentUpdate
+// TODO: shouldComponentUpdate
 class Index extends React.Component{
     state={
         stateNumA:0,
