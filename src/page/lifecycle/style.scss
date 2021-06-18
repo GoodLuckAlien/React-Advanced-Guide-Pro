@@ -1,0 +1,20 @@
+.box{
+    width: 500px;
+    padding: 30px;
+}
+.context_box{
+    width: 300px;
+    height:300px;
+    position: relative;
+    .icon{
+        position: absolute;
+        left:50%;
+        toP:50%;
+        transform: translate(-50%,-50%);
+    }
+}
+
+.alien{
+    width: 300px;
+    height:300px;
+}

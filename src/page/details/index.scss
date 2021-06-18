@@ -1,0 +1,29 @@
+.scrollIndex{
+    height: 500px;
+    width: 300px;
+    overflow: scroll;
+    .scrollContent{
+        height: 2000px;
+        background-color: #ccc;
+        // transform: translate(5px,50px);
+    }
+}
+
+
+.current{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #ccc;
+    transition: background 1s ;
+}
+.animation{
+    animation: 1s changeColor;
+    background:yellowgreen;
+}
+@keyframes changeColor {
+    0%{background:#c00;}
+    50%{background:orange;}
+    100%{background:yellowgreen;}
+}

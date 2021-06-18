@@ -1,0 +1,126 @@
+
+
+$bg-linear-gradien-red-light : linear-gradient(135deg, #fc4838 0%, #f6346b  100%);
+$bg-linear-gradien-red-dark : linear-gradient(135deg, #fc4838 0%, #f6346b  100%);
+.show{
+
+   padding: 30px;
+   width: 500px;
+   border: 1px solid #ccc;
+   height: 200px;
+   margin-bottom: 30px;
+}
+
+.constrol{
+   padding: 30px;
+   width: 500px;
+   border: 1px solid #ccc;
+   height: 200px;
+}
+
+.searchbtn{
+   background: $bg-linear-gradien-red-light;
+   color: #fff;
+   min-width: 96px;
+   height :36px;
+   border :none;
+   border-radius: 18px;
+   font-size: 14px;
+   font-weight: 500;
+   cursor: pointer;
+   margin-left: 20px !important;
+ }
+ .searchbtn:focus{
+   background: $bg-linear-gradien-red-dark;
+   color: #fff;
+   min-width: 96px;
+   height: 36px;
+   border: none;
+   border-radius: 18px;
+   font-size: 14px;
+   font-weight: 500;
+   cursor: pointer;
+   margin-left: 20px !important;
+   box-shadow: 0 2px 7px 0 #FAA79B;
+ }
+ .searchbtn:hover{
+   background :$bg-linear-gradien-red-light;
+   color :#fff;
+   min-width: 96px;
+   height :36px;
+   margin-left: 20px !important;
+   border: none;
+   border-radius: 18px;
+   font-size :14px;
+   font-weight: 500;
+   cursor: pointer;
+   box-shadow: 0 2px 7px 0 #FAA79B;
+ }
+ .searchbtn:disabled{
+   background: #c0c6c6;
+   color :#fff;
+   min-width: 96px;
+   height :36px;
+   font-size :14px;
+   font-weight: 500;
+   border: none;
+   border-radius: 18px;
+   cursor: not-allowed;
+ }
+ 
+ .concellbtn{
+   background :#fff;
+   color :#303133;
+   width: 96px;
+   height: 36px;
+   font-size: 14px;
+   font-weight: 500;
+   border :1px solid #E4E7ED;
+   border-radius: 18px;
+   cursor: pointer;
+   // margin-right: 10px;
+   margin-left: 10px;
+ }
+ .concellbtn:hover{
+   background :rgba(220, 223, 230, 0.1);
+   color: #303133;
+   width :96px;
+   height: 36px;
+   font-size: 14px;
+   font-weight: 500;
+   border :1px solid #E4E7ED;
+   border-radius: 18px;
+   cursor: pointer;
+   // margin-right: 10px;
+   margin-left: 10px;
+ }
+ .concellbtn:focus{
+   background :rgba(220, 223, 230, 0.24);
+   color: #303133;
+   width :96px;
+   height: 36px;
+   font-size: 14px;
+   font-weight: 500;
+   border: 1px solid #C0C4CC;
+   border-radius: 18px;
+   cursor: pointer;
+   margin-right: 10px;
+   margin-left: 10px;
+ }
+
+ .label{
+    width: 120px;
+    display: inline-block;
+ }
+ .input{
+     height: 30px;
+     margin: 10px;
+     margin-left: 10px;
+     width: 150px;
+ }
+ .form{
+    padding: 10px;
+ }
+ .btns{
+    margin-top: 15px;
+ }

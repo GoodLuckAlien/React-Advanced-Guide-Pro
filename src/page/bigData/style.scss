@@ -1,0 +1,39 @@
+
+.bigData_index{
+    position: fixed;
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    .circle{
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+    }
+}
+
+.list{
+    list-style: none;
+    background-color: #fc4838;
+    padding: 10px 20px;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-left: 24px;
+    margin-right: 24px;
+    font-weight: bold;
+    border-radius:10px ;
+}
+
+
+.list_box{
+    position: fixed;
+    left:0;
+    top:60px;
+    overflow: scroll;
+    bottom:0;
+    right: 0;
+}

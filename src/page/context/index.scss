@@ -1,0 +1,33 @@
+
+
+.context_app{
+    width: 800px;
+
+    min-height: 500px;
+    .context_box{
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+        flex:1;
+    }    
+    .box_content{
+        display: flex;
+        margin-top: 40px;
+    }
+    .context_change_theme{
+        .checkbox{
+            display: inline-block;
+        
+        }
+    } 
+    label{
+        width: 50px;
+    }
+    .person_des{
+        width: 100%;
+        height: 100%;
+        box-sizing:border-box ;
+        padding-top: 32px;
+        padding-left: 32px;
+    }
+}
