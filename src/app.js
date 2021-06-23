@@ -20,6 +20,7 @@ import RouterPage from './page/router/index'
 import Details from './page/details/index'
 import RefDemo from './page/ref/index'
 import EventDemo from './page/event/index'
+import Mobx from './page/react-mobx/index'
 import './app.scss'
 
 
@@ -101,6 +102,11 @@ const menusList = [
     name:'20_React-Redux',
     path:'/reactRedux',
     component:ReactRedux
+  },
+  {
+    name:'21_React_Mobx',
+    path:'/reactMobx',
+    component:Mobx
   }
 ]
 
