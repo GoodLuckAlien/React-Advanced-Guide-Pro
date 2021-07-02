@@ -1,18 +1,15 @@
-import { observable ,action } from 'mobx'
-
+import { observable ,action ,makeObservable } from 'mobx'
 class Root{
-   @observable info={
-       name:'alien',
-       mes:'let us learn React!'
+   constructor(){
+      makeObservable(this)
    }
-//    @observable number = 1
-   @action setInfo(){
-
+   @observable info={
+       name:'xxx',
+       mes:'xxx'
+   }
+   // @observable number = 1
+   @action setInfo(info){
+      this.info = info
    }
 }
-
-const root = new Root()
-
-console.log(root,'roottoot')
-
-export default root
+export default new Root()
