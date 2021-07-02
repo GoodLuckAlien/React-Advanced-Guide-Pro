@@ -48,6 +48,7 @@ function  Top() {
 }
 
 function Index() {
+    console.log('根组件渲染')
     return <Router>
          <Top/>
         <Menus />

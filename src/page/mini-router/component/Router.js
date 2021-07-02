@@ -1,8 +1,7 @@
-import React ,{ useCallback, useState , useEffect ,createContext, useMemo  } from 'react'
+import React ,{ useState , useEffect ,createContext, useMemo  } from 'react'
 import { createBrowserHistory as createHistory  } from 'history'
 
 export const RouterContext = createContext()
-
 export let rootHistory = null
 
 export default function Router(props){
@@ -21,8 +20,6 @@ export default function Router(props){
                unlisten && unlisten()
           }
      },[])
-     /* 缓存防止location改变引发更新 */
-     const renderChildren = useCallback(props.children ,[])
      return <RouterContext.Provider
          value={{
                location,
@@ -30,6 +27,6 @@ export default function Router(props){
                match: { path: '/', url: '/', params: {}, isExact: location.pathname === '/' }
           }}
             >
-          {renderChildren}
+          {props.children}
      </RouterContext.Provider>
 }
