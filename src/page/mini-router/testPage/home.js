@@ -5,8 +5,8 @@ import HomeOne from './homeOne'
 
 export default function Home(){
     return <div>
-        hello,world.
-        home
+        hello,world。
+        let us learn React!
         <HomeOne />
     </div>
 }
