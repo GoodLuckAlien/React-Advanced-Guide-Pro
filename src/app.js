@@ -23,6 +23,7 @@ import EventDemo from './page/event/index'
 import Mobx from './page/react-mobx/index'
 import MiniRouter from './page/mini-router/index'
 import CustomModel from './page/customModel/index'
+import Verification from './page/formData/index'
 import './app.scss'
 
 
@@ -109,6 +110,11 @@ const menusList = [
     name:'21_React_Mobx',
     path:'/reactMobx',
     component:Mobx
+  },
+  {
+    name:'23_Form_Verificate',
+    path:'/formVerify',
+    component:Verification
   },
   {
     name:'24_Custom_Model',
