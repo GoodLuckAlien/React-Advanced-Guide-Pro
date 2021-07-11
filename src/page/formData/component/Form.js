@@ -1,8 +1,9 @@
 
-import React , { forwardRef , createContext , useImperativeHandle , useMemo  } from 'react'
+import React , { forwardRef, useImperativeHandle  } from 'react'
+
+import FormContext  from   './FormContext'
 import  useForm  from '../hooks/useForm'
 
-export const FormContext = createContext()
 /**
  * props -> default
  */
@@ -15,7 +16,6 @@ function Form ({
 },ref){
     /* 创建 form 状态管理实例 */
     const formInstance = useForm(form,initialValues)
-
     const { setCallback ,...providerFormInstance } = formInstance
 
     /* 向 form 中注册回调函数 */
@@ -30,11 +30,15 @@ function Form ({
     const RenderChildren = <FormContext.Provider value={formInstance} > {children} </FormContext.Provider>
 
     return <form
-        onReset={()=>{}}
+        onReset={(e)=>{
+            e.preventDefault()
+            e.stopPropagation()
+            formInstance.resetFields() /* 重置表单 */
+        }}
         onSubmit={(e)=>{
             e.preventDefault()
             e.stopPropagation()
-            formInstance.submit() /* 提交表单 */
+            formInstance.submit()      /* 提交表单 */
         }}
            >
            {RenderChildren}

@@ -19,6 +19,7 @@
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
     "proptypes": "^1.1.0",
+    "rc-select": "^13.0.0-alpha.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-keepalive-router": "^1.1.3",

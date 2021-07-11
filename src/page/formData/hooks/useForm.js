@@ -20,8 +20,6 @@ const formInstanceApi = [
 
 const isReg = (value) => value instanceof RegExp
 
-const PromiseResolve = Promise.resolve
-
 /*
    数据结构 model = {
        [name] -> {
@@ -69,9 +67,11 @@ class FormStore{
     /* 触发事件 */
     dispatch(action,...arg){
         if(!action && typeof action !== 'object') return null
-       const { type , payload } = action
+       const { type } = action
        if(~formInstanceApi.indexOf(type)){
            return this[type](...arg)
+       }else if(typeof this[type] === 'function'   ){
+        return this[type](...arg)
        }
     }
     /* 注册表单单元项 */
@@ -88,7 +88,7 @@ class FormStore{
     /* 重置表单 */
     resetFields(){
         Object.keys(this.model).forEach(modelName => {
-            this.setFieldsValue(modelName,{ value: null })
+             this.setValueClearStatus(this.model[modelName],modelName,null)
         })
     }
     /* 设置一组字段状态	  */
@@ -100,8 +100,8 @@ class FormStore{
     }
     /* 设置表单值 */
     setFieldsValue(name,modelValue){
-        const model = this.model[name]
-        if(!model) return false
+      const model = this.model[name]
+       if(!model) return false
        if(typeof modelValue === 'object' ){ /* 设置表单项 */
            const { message ,rule , value  } = modelValue
            if(message) model.message = message
@@ -110,10 +110,14 @@ class FormStore{
            model.status = 'pendding'              /* 设置待验证状态 */
            this.validateFieldValue(name,true)     /* 如果重新设置了验证规则，那么重新验证一次 */
        }else {
-           model.value = modelValue
-           model.status = 'pendding'
-           this.notifyChange(name)
+           this.setValueClearStatus(model,name,modelValue)
        }
+    }
+    /* 复制并清空状态 */
+    setValueClearStatus(model,name,value){
+        model.value = value
+        model.status = 'pendding'
+        this.notifyChange(name)
     }
     /* 通知更新 */
     notifyChange(name){
@@ -127,6 +131,11 @@ class FormStore{
            formData[modelName] = this.model[modelName].value
        })
        return formData
+    }
+    /* 获取表单模型 */
+    getFieldModel(name){
+        const model =  this.model[name]
+        return model ? model : {}
     }
     /* 获取对应字段名的值 */
     getFieldValue(name){
@@ -161,7 +170,7 @@ class FormStore{
     scheduleValidate(){
        if(this.isSchedule) return
        this.isSchedule = true
-       PromiseResolve().then(()=>{
+       Promise.resolve().then(()=>{
            /* 批量更新验证任务 */
           unstable_batchedUpdates(()=>{
               do{
@@ -177,14 +186,15 @@ class FormStore{
        let status = true
        Object.keys(this.model).forEach(modelName=>{
            const modelStates = this.validateFieldValue(modelName,true)
-           if(!modelStates) status = false
+           if(modelStates==='reject') status = false
        })
        callback(status)
     }
     /* 提交表单 */
-    submit(){
+    submit(cb){
         this.validateFields((res)=>{
             const { onFinish, onFinishFailed} = this.callback
+            cb && cb(res)
             if(!res) onFinishFailed && typeof onFinishFailed === 'function' && onFinishFailed() /* 验证失败 */
             onFinish && typeof onFinish === 'function' && onFinish( this.getFieldsValue() )     /* 验证成功 */
         })

@@ -1,6 +1,6 @@
-import React  , { memo , useEffect , useContext , useState , useCallback, useMemo , cloneElement , isValidElement }  from  'react'
+import React  , { memo , useEffect , useContext , useState , useMemo , cloneElement , isValidElement }  from  'react'
 
-import { FormContext } from '../component/Form'
+import FormContext from './FormContext'
 import Message from './Message'
 import Label from './Label'
 
@@ -8,7 +8,9 @@ function FormItem ({
     name,
     children,
     label,
-    required,
+    height = 50 ,
+    labelWidth,
+    required = false ,
     rules = {},
     trigger = 'onChange',
     validateTrigger = 'onChange'
@@ -28,7 +30,7 @@ function FormItem ({
     },[ formInstance ])
     useEffect(()=>{
          /* 注册表单 */
-        registerValidateFields(name,onStoreChange,{ ...rules })
+        registerValidateFields(name,onStoreChange,{ ...rules , required })
         return function(){
             /* 卸载表单 */
             unRegisterValidate(name)
@@ -43,7 +45,7 @@ function FormItem ({
              dispatch({ type:'setFieldsValue' },name ,value)
          }
         mergeChildrenProps[trigger] = handleChange
-        if(required){
+        if(required || rules ){
              /* 验证表单单元项的值 */
             mergeChildrenProps[validateTrigger] = (e) => {
                  /* 当改变值和验证表单，用统一一个事件 */
@@ -63,10 +65,17 @@ function FormItem ({
     }else{
         renderChildren = children
     }
-
-    return <Label label={label} >
+    return <Label
+        height={height}
+        label={label}
+        labelWidth={labelWidth}
+        required={required}
+           >
          {renderChildren}
-         <Message  dispatch={dispatch}  />
+         <Message
+             name={name}
+             {...dispatch({ type :'getFieldModel'},name)}
+         />
      </Label>
 }
 
