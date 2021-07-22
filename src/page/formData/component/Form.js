@@ -8,15 +8,16 @@ import  useForm  from '../hooks/useForm'
  * props -> default
  */
 function Form ({
-    onFinish,
     form,
+    onFinish,
     onFinishFailed,
     initialValues,
     children
 },ref){
     /* 创建 form 状态管理实例 */
     const formInstance = useForm(form,initialValues)
-    const { setCallback ,...providerFormInstance } = formInstance
+    /* 抽离属性 -> 抽离 dispatch ｜ setCallback 这两个方法不能对外提供。  */
+    const { setCallback, dispatch  ,...providerFormInstance } = formInstance
 
     /* 向 form 中注册回调函数 */
     setCallback({
@@ -26,7 +27,7 @@ function Form ({
 
     /* Form 能够被 ref 标记，并操作实例。 */
     useImperativeHandle(ref,() => providerFormInstance , [])
-
+    /* 传递 */
     const RenderChildren = <FormContext.Provider value={formInstance} > {children} </FormContext.Provider>
 
     return <form

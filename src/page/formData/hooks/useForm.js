@@ -9,6 +9,7 @@ const formInstanceApi = [
     'resetFields',
     'setFields',
     'setFieldsValue',
+    'getFieldsValue',
     'getFieldValue',
     'validateFields',
     'submit',
@@ -17,14 +18,13 @@ const formInstanceApi = [
 
 
 /* 判断是否是正则表达式 */
-
 const isReg = (value) => value instanceof RegExp
 
 /*
    数据结构 model = {
        [name] -> {
-           value     -> 表单值   (可以重新设定)
-           rule      -> 验证规则  (可以重新设定)
+           value     -> 表单值    (可以重新设定)
+           rule      -> 验证规则  ( 可以重新设定)
            required  -> 是否必添 -> 在含有 rule 的情况下默认为 true
            message   -> 提示消息
            status    -> 验证状态  resolve -> 成功状态 ｜reject -> 失败状态 ｜ pendding -> 待验证状态 |
@@ -32,7 +32,7 @@ const isReg = (value) => value instanceof RegExp
    }
 */
 class FormStore{
-    constructor(forceUpdate,defaultFormValue){
+    constructor(forceUpdate,defaultFormValue={}){
         this.FormUpdate = forceUpdate
         this.model = {}
         this.control = {}
@@ -75,8 +75,9 @@ class FormStore{
        }
     }
     /* 注册表单单元项 */
-    registerValidateFields(name,control,value){
-       const validate = FormStore.createValidate(value)
+    registerValidateFields(name,control,model){
+       if(this.defaultFormValue[name]) model.value = this.defaultFormValue[name] /* 如果存在默认值的情况 */
+       const validate = FormStore.createValidate(model)
        this.model[name] = validate
        this.control[name] = control
     }
@@ -140,6 +141,7 @@ class FormStore{
     /* 获取对应字段名的值 */
     getFieldValue(name){
         const model =  this.model[name]
+        if(!model && this.defaultFormValue[name]) return this.defaultFormValue[name] /* 没有注册，但是存在默认值的情况 */
         return model ? model.value : null
     }
     /* 单一表单单元项验证 */
@@ -210,9 +212,9 @@ function useForm(form,defaultFormValue = {}){
       if(form){
           formRef.current = form  /* 如果已经有 form，那么复用当前 form  */
       }else { /* 没有 form 创建一个 form */
-        const formStoreCurrent = new FormStore()
+        const formStoreCurrent = new FormStore(forceUpdate,defaultFormValue)
         /* 获取实例方法 */
-        formRef.current = formStoreCurrent.getForm(forceUpdate,defaultFormValue)
+        formRef.current = formStoreCurrent.getForm()
       }
    }
    return formRef.current

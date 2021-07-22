@@ -3,10 +3,7 @@ import React , { useRef , useEffect } from 'react'
 
 import Form , { Input , Select } from './form'
 
-import { Radio  } from 'antd'
-
 const FormItem = Form.FormItem
-
 const Option = Select.Option
 
 function Index(){
@@ -19,13 +16,16 @@ function Index(){
              console.log(res)
          })
     }
-    const handleReset= () => {
-        form.current.resetFields()
+    const handleGetValue = ()=>{
+        const value = form.current.getFieldsValue()
+        console.log(value)
     }
-    return <div style={{ marginTop:'50px' }} >
-        <Form  ref={form} >
+    return <div style={{ marginTop:'50px' , marginLeft:'50px'  }} >
+        <Form  initialValues={{ author : '我不是外星人' }}
+            ref={form}
+        >
             <FormItem
-                label="请输入姓名"
+                label="请输入小册名称"
                 labelWidth={150}
                 name="name"
                 required
@@ -36,18 +36,47 @@ function Index(){
                 validateTrigger="onBlur"
             >
                  <Input
-                     placeholder="请输入姓名"
+                     placeholder="小册名称"
                  />
             </FormItem>
             <FormItem
-                label="年龄"
+                label="作者"
                 labelWidth={150}
-                name="age"
+                name="author"
                 required
+                validateTrigger="onBlur"
             >
                  <Input
-                     placeholder="请输入年龄"
+                     placeholder="请输入作者"
                  />
+            </FormItem>
+            <FormItem label="邮箱"
+                labelWidth={150}
+                name="email"
+                rules={{ rule: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/ ,message:'邮箱格式错误！'  }}
+                validateTrigger="onBlur"
+            >
+                <Input
+                    placeholder="请输入邮箱"
+                />
+            </FormItem>
+            <FormItem label="手机"
+                labelWidth={150}
+                name="phone"
+                rules={{ rule: /^1[3-9]\d{9}$/ ,message:'手机格式错误！'  }}
+                validateTrigger="onBlur"
+            >
+                <Input
+                    placeholder="请输入手机"
+                />
+            </FormItem>
+            <FormItem label="简介"
+                labelWidth={150}
+                name="des"
+                rules={{ rule: (value='') => value.length < 5   ,message:'简介不超过五个字符'  }}
+                validateTrigger="onBlur"
+            >
+                <Input placeholder="输入简介"  />
             </FormItem>
             <FormItem label="你最喜欢的前端框架"
                 labelWidth={150}
@@ -55,7 +84,7 @@ function Index(){
                 required
             >
                 <Select  defaultValue={null}
-                    placeholder="选择你喜欢的前端框架"
+                    placeholder="请选择"
                     width={120}
                 >
                     <Option
@@ -73,8 +102,24 @@ function Index(){
                 type="reset"
             >重置</button>
         </Form>
-       <div> <button className="searchbtn" >获取表单数层</button></div>
-       <div></div>
+       <div style={{ marginTop:'20px' }} >
+            <span>验证表单功能</span>
+            <button className="searchbtn"
+                onClick={handleGetValue}
+                style={{ background:'green' }}
+            >获取表单数层</button>
+            <button className="searchbtn"
+                onClick={()=> form.current.validateFields((res)=>{ console.log('是否通过验证：' ,res ) })}
+                style={{ background:'orange' }}
+            >动态验证表单</button>
+            <button className="searchbtn"
+                onClick={() => { form.current.setFieldsValue('des',{
+                    rule: (value='') => value.length < 10,
+                    message:'简介不超过十个字符'
+                }) }}
+                style={{ background:'purple' }}
+            >动态设置校验规则</button>
+       </div>
     </div>
 }
 

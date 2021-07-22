@@ -1,10 +1,12 @@
 import React from 'react'
 
 function Select({ children,...props }){
-    console.log(props)
     return <select {...props}
         className="form-input"
            >
+        <option label={props.placeholder}
+            value={null}
+        >{props.placeholder}</option>
         {children}
     </select>
 }

@@ -30,15 +30,16 @@ function FormItem ({
     },[ formInstance ])
     useEffect(()=>{
          /* 注册表单 */
-        registerValidateFields(name,onStoreChange,{ ...rules , required })
+        name && registerValidateFields(name,onStoreChange,{ ...rules , required })
         return function(){
             /* 卸载表单 */
-            unRegisterValidate(name)
+           name &&  unRegisterValidate(name)
         }
     },[ onStoreChange ])
      /* 使表单控件变成可控制的 */
     const getControlled = (child)=> {
         const mergeChildrenProps = { ...child.props }
+        if(!name) return mergeChildrenProps
          /* 改变表单单元项的值 */
         const handleChange  = (e)=> {
              const value = e.target.value

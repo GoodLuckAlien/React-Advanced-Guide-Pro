@@ -195,6 +195,7 @@ class Form extends React.Component{
         const { children } = this.props
         const renderChildren = []
         React.Children.forEach(children,(child)=>{
+            console.log(child)
             if(child.type.__COMPONENT_TYPE === 'formItem'){
                 const { name } = child.props
                 const Children = React.cloneElement(child,{
@@ -224,18 +225,19 @@ export default  () => {
         form.current.resetForm()
     }
     return <div className="box" >
-        <Form ref={form} >
+        <Form ref={form}>
             <FormItem label="我是"
                 name="name"
             >
-                <Input   />
+                <Input />
             </FormItem>
             <FormItem label="我想对大家说"
                 name="mes"
             >
-                <Input   />
+                <Input />
             </FormItem>
-            <input  placeholder="不需要的input" />
+            <input placeholder="不需要的input"/>
+            <Input />
         </Form>
         <div className="btns" >
             <button className="searchbtn"

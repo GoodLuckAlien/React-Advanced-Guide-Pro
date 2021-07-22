@@ -24,6 +24,7 @@ import Mobx from './page/react-mobx/index'
 import MiniRouter from './page/mini-router/index'
 import CustomModel from './page/customModel/index'
 import Verification from './page/formData/index'
+import CustomHooks from './page/customHooks/index'
 import './app.scss'
 
 
@@ -32,7 +33,7 @@ const menusList = [
   {
     name: '2_认识Jsx',
     path: '/jsx',
-    component:()=> JSX
+    component:JSX
   },
   {
     name: '3_玄学state',
@@ -120,6 +121,10 @@ const menusList = [
     name:'24_Custom_Model',
     path:'/customMedol',
     component:CustomModel
+  },{
+    name:'26_Custom_Hooks',
+    path:'/customHooks',
+    component:CustomHooks, 
   }
 ]
 

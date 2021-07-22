@@ -7,6 +7,6 @@ import './assets/styles/common.scss'
 
 
 ReactDOM.render(
-    < App / >,
+    React.createElement(App),
     document.getElementById('app')
 )

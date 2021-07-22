@@ -7,7 +7,7 @@
 全局安装 rux-cli:
 
 ````js
-npm install rux/cli -g 
+npm install rux-cli -g 
 ````
 
 安装成功后，运行命令：
@@ -15,3 +15,4 @@ npm install rux/cli -g
 ````js
 npm start 
 ````
+
