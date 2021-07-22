@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rux start",
-    "build": "rux build"
+    "test": "webpack  --config ./config/webpack.base.js",
+    "start": "webpack-dev-server --config ./config/webpack.base.js",
+    "build": "webpack --env.production --config ./config/webpack.base.js"
   },
   "author": "zhaolin",
   "license": "ISC",
