@@ -22,6 +22,7 @@ export default function useLog(){
         const handleClick = function (e){
             reportMessage(e.target,'click')
         }
+
         if(listenDOM.current){
             listenDOM.current.addEventListener('click',handleClick)
         }

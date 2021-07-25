@@ -1,7 +1,8 @@
 /* eslint-disable react/no-multi-comp */
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
-import useLog , { LogContext } from './hooks/useLog'
+
+// import useLog , { LogContext } from './hooks/useLog'
 
 /* TODO:  记录状态 */
 // function useRenderCount(){
@@ -131,7 +132,242 @@ import useLog , { LogContext } from './hooks/useLog'
 // }
 
 /* TODO: 执行副作用 */
+// function useEffectProps(value,cb){
+//     const isMounted = React.useRef(false)
+//     /* 防止第一次执行 */
+//     React.useEffect(()=>{
+//        (isMounted.current && cb) && cb()
+//     },[ value ])
+//     React.useEffect(()=>{
+//         isMounted.current = true
+//    },[])
+// }
 
-function useEffectProps(value,cb){
+// function Index(props){
+//     /* 监听 a 变化 */
+//     useEffectProps( props.a ,()=>{
+//         console.log('props a 变化:', props.a  )
+//     } )
+//     return <div>子组件</div>
+// }
 
+// export default function Home(){
+//     const [ a , setA ] = React.useState(0)
+//     const [ b , setB ] = React.useState(0)
+//     return <div>
+//         <Index a={a}
+//             b={b}
+//         />
+//         <button onClick={()=> setA(a+1)} >改变 props a  </button>
+//         <button onClick={()=> setB(b+1)} >改变 props b  </button>
+//     </div>
+// }
+
+/* 模拟数据请求 */
+// function requestData({ page,query }){
+
+// }
+
+
+
+/* TODO:  useTable */
+// const columns = [
+//     {
+//          title: '商品名称',
+//          dataIndex: 'id',
+//          key: 'giftName'
+//     },
+//     {
+//          title: '价格',
+//          dataIndex: 'price',
+//          key: 'price'
+//      },
+//      {
+//          title:'图片',
+//          dataIndex:'giftImage',
+//          key:'giftImage',
+//          render:(text)=> <div>
+//              <img src={text}
+//                  style={{ width:'70px' , height:'70px' }}
+//              />
+//          </div>
+//      }
+//  ]
+
+//  const inputStyle = { width:'200px',marginRight:'24px'  }
+
+
+// import { listData } from '../../mock'
+// import useQueryTable from './hooks/useQueryTable'
+// import { Table , Input , Select } from 'antd'
+
+// const Option = Select.Option
+
+// function threeNumberRandom(){
+//     const result = []
+//     while(result.length < 3){
+//         const number = parseInt( Math.random() * 9 )
+//         if(result.indexOf(number) === -1) result.push(number)
+//     }
+//     return result
+// }
+
+
+/* 模拟数据请求 */
+// function getTableData(payload){
+//     return new Promise((resolve)=>{
+//         Promise.resolve().then(()=>{
+//             const { list } = listData
+//              // 生成三个随机数 模拟数据交互
+//             const arr = threeNumberRandom()
+//             console.log('请求参数：',payload)
+//             resolve({
+//                 ...listData,
+//                 list:[ list[arr[0]],list[arr[1]],list[arr[2]] ],
+//                 total:list.length,
+//                 current:payload.page || 1
+//             })
+//         })
+//     })
+// }
+
+// function Index (){
+//     const [ table,form ] = useQueryTable({ pageSize:3 },getTableData)
+//     const { formData ,setFormItem , reset  } = form
+//     const { pagination , tableData , getList  , handerChange } = table
+//     const submit = () => {
+//         console.log(formData)
+//         getList()
+//     }
+//     return <div style={{ margin:'30px' }} >
+//         <div style={{ marginBottom:'24px' }} >
+//             <Input onChange={(e)=> setFormItem('name',e.target.value)}
+//                 placeholder="请输入名称"
+//                 style={inputStyle}
+//                 value={formData.name || ''}
+//             />
+//              <Input onChange={(e)=> setFormItem('price',e.target.value)}
+//                  placeholder="请输入价格"
+//                  style={inputStyle}
+//                  value={formData.price || ''}
+//              />
+//              <Select onChange={(value) => setFormItem('type',value)}
+//                  placeholder="请选择"
+//                  style={inputStyle}
+//                  value={formData.type}
+//              >
+//                  <Option value="1" >家电</Option>
+//                  <Option value="2" >生活用品</Option>
+//              </Select>
+//             <button className="searchbtn"
+//                 onClick={submit}
+//             >提交</button>
+//              <button className="concellbtn"
+//                  onClick={reset}
+//              >重置</button>
+//         </div>
+//         {useCallback( <Table
+//             columns={columns}
+//             dataSource={tableData.list}
+//             height="300px"
+//             onChange={(res)=>{ handerChange(res.current,res.pageSize) }}
+//             pagination={{ ...pagination, total: tableData.total ,current:tableData.current }}
+//             rowKey="id"
+//                       />,[tableData])}
+//     </div>
+// }
+
+// export default Index
+
+/* TODO:  */
+
+import { ReduxContext , useConnect , useCreateStore } from './hooks/useRedux'
+import './style.scss'
+
+function CompA(){
+    const [ value ,setValue ] = useState('')
+    const [state ,dispatch ] = useConnect((state)=> ({ mesB : state.mesB }) )
+    return <div className="component_box" >
+        <p> 组件A</p>
+        <p>组件B对我说 ： {state.mesB} </p>
+        <input onChange={(e)=>setValue(e.target.value)}
+            placeholder="对B组件说"
+        />
+        <button onClick={()=> dispatch({ type:'setA' ,payload:value })} >确定</button>
+    </div>
 }
+
+function CompB(){
+    const [ value ,setValue ] = useState('')
+    const [state ,dispatch ] = useConnect((state)=> ({ mesA : state.mesA }) )
+    return <div className="component_box" >
+        <p> 组件B</p>
+        <p>组件A对我说 ： {state.mesA} </p>
+        <input onChange={(e)=>setValue(e.target.value)}
+            placeholder="对A组件说"
+        />
+        <button onClick={()=> dispatch({ type:'setB' ,payload:value })} >确定</button>
+    </div>
+}
+
+function CompC(){
+    const [state  ] = useConnect((state)=> ({ mes1 : state.mesA,mes2 : state.mesB }) )
+    return <div className="component_box" >
+        <p> 组件C</p>
+        <p>组件A内容 ： {state.mes1} </p>
+        <p>组件Bnei ： {state.mes2} </p>
+    </div>
+}
+
+function CompD(){
+    const [ ,dispatch  ] = useConnect( )
+    console.log('D 组件更新')
+    return <div className="component_box" >
+        <p> 组件D</p>
+        <button onClick={()=> dispatch({ type:'clear' })} > 清空 </button>
+    </div>
+}
+
+
+function  Index(){
+    const [ isShow , setShow ] =  React.useState(true)
+    console.log('index 渲染')
+    return <div>
+        <CompA />
+        <CompB />
+        <CompC />
+        {isShow &&  <CompD />}
+        <button onClick={() => setShow(!isShow)} >动态挂载D</button>
+    </div>
+}
+
+function Root(){
+    const store = useCreateStore(function(state,action){
+        const { type , payload } =action
+        if(type === 'setA' ){
+            return {
+                ...state,
+                mesA:payload
+            }
+        }else if(type === 'setB'){
+            return {
+                ...state,
+                mesB:payload
+            }
+        }else if(type === 'clear'){ //清空
+            return  { mesA:'',mesB:'' }
+        }
+        else{
+            return state
+        }
+    },
+    { mesA:'111',mesB:'111' })
+    return <div>
+        <ReduxContext.Provider value={store} >
+            <Index/>
+        </ReduxContext.Provider>
+    </div>
+}
+
+
+export default Root
