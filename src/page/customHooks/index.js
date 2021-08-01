@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react'
 
 
-// import useLog , { LogContext } from './hooks/useLog'
+import useLog , { LogContext } from './hooks/useLog'
 
 /* TODO:  记录状态 */
 // function useRenderCount(){
@@ -106,30 +106,33 @@ import React, { useCallback, useState } from 'react'
 
 
 /* TODO: demo1 -- useLog */
-//  function Home(){
-//     const [ dom , reportMessage  ] = useLog()
-//     return <div>
-//         {/* 监听内部点击 */}
-//         <div ref={dom} >
-//             <p> 《React进阶实践指南》</p>
-//             <button> 按钮 one   (内部点击) </button>
-//             <button> 按钮 two   (内部点击) </button>
-//             <button> 按钮 three (内部点击)  </button>
-//         </div>
-//         {/* 外部点击 */}
-//         <button  onClick={()=>{ console.log(reportMessage)  }} > 外部点击 </button>
-//     </div>
-// }
+ function Home(){
+     console.log('渲染次数')
+    const [ dom , reportMessage  ] = useLog()
+    return <div>
+        {/* 监听内部点击 */}
+        <div ref={dom} >
+            <p> 《React进阶实践指南》</p>
+            <button> 按钮 one   (内部点击) </button>
+            <button> 按钮 two   (内部点击) </button>
+            <button> 按钮 three (内部点击)  </button>
+        </div>
+        {/* 外部点击 */}
+        <button  onClick={()=>{ console.log(reportMessage)  }} > 外部点击 </button>
+    </div>
+}
 
-// const Index = React.memo(Home)
+const Index = React.memo(Home)
 
-// export default function Root(){
-//     const [ value , setValue ] = useState({})
-//     return  <LogContext.Provider value={value} >
-//         <Index />
-//         <button onClick={()=> setValue({ name:'《React进阶实践指南》' , author:'我不是外星人'  })} >点击</button>
-//     </LogContext.Provider>
-// }
+export default function Root(){
+    const [ value , setValue ] = useState({})
+    const [ number , setNumber ] = useState(1)
+    return  <LogContext.Provider value={value} >
+        <Index  />
+        <button onClick={()=> setValue({ name:'《React进阶实践指南》' , author:'我不是外星人'  })} >点击</button>
+        <button onClick={()=> setNumber(number+1)} >点击</button>
+    </LogContext.Provider>
+}
 
 /* TODO: 执行副作用 */
 // function useEffectProps(value,cb){
@@ -281,93 +284,93 @@ import React, { useCallback, useState } from 'react'
 
 /* TODO:  */
 
-import { ReduxContext , useConnect , useCreateStore } from './hooks/useRedux'
-import './style.scss'
+// import { ReduxContext , useConnect , useCreateStore } from './hooks/useRedux'
+// import './style.scss'
 
-function CompA(){
-    const [ value ,setValue ] = useState('')
-    const [state ,dispatch ] = useConnect((state)=> ({ mesB : state.mesB }) )
-    return <div className="component_box" >
-        <p> 组件A</p>
-        <p>组件B对我说 ： {state.mesB} </p>
-        <input onChange={(e)=>setValue(e.target.value)}
-            placeholder="对B组件说"
-        />
-        <button onClick={()=> dispatch({ type:'setA' ,payload:value })} >确定</button>
-    </div>
-}
+// function CompA(){
+//     const [ value ,setValue ] = useState('')
+//     const [state ,dispatch ] = useConnect((state)=> ({ mesB : state.mesB }) )
+//     return <div className="component_box" >
+//         <p> 组件A</p>
+//         <p>组件B对我说 ： {state.mesB} </p>
+//         <input onChange={(e)=>setValue(e.target.value)}
+//             placeholder="对B组件说"
+//         />
+//         <button onClick={()=> dispatch({ type:'setA' ,payload:value })} >确定</button>
+//     </div>
+// }
 
-function CompB(){
-    const [ value ,setValue ] = useState('')
-    const [state ,dispatch ] = useConnect((state)=> ({ mesA : state.mesA }) )
-    return <div className="component_box" >
-        <p> 组件B</p>
-        <p>组件A对我说 ： {state.mesA} </p>
-        <input onChange={(e)=>setValue(e.target.value)}
-            placeholder="对A组件说"
-        />
-        <button onClick={()=> dispatch({ type:'setB' ,payload:value })} >确定</button>
-    </div>
-}
+// function CompB(){
+//     const [ value ,setValue ] = useState('')
+//     const [state ,dispatch ] = useConnect((state)=> ({ mesA : state.mesA }) )
+//     return <div className="component_box" >
+//         <p> 组件B</p>
+//         <p>组件A对我说 ： {state.mesA} </p>
+//         <input onChange={(e)=>setValue(e.target.value)}
+//             placeholder="对A组件说"
+//         />
+//         <button onClick={()=> dispatch({ type:'setB' ,payload:value })} >确定</button>
+//     </div>
+// }
 
-function CompC(){
-    const [state  ] = useConnect((state)=> ({ mes1 : state.mesA,mes2 : state.mesB }) )
-    return <div className="component_box" >
-        <p> 组件C</p>
-        <p>组件A内容 ： {state.mes1} </p>
-        <p>组件Bnei ： {state.mes2} </p>
-    </div>
-}
+// function CompC(){
+//     const [state  ] = useConnect((state)=> ({ mes1 : state.mesA,mes2 : state.mesB }) )
+//     return <div className="component_box" >
+//         <p> 组件C</p>
+//         <p>组件A内容 ： {state.mes1} </p>
+//         <p>组件Bnei ： {state.mes2} </p>
+//     </div>
+// }
 
-function CompD(){
-    const [ ,dispatch  ] = useConnect( )
-    console.log('D 组件更新')
-    return <div className="component_box" >
-        <p> 组件D</p>
-        <button onClick={()=> dispatch({ type:'clear' })} > 清空 </button>
-    </div>
-}
-
-
-function  Index(){
-    const [ isShow , setShow ] =  React.useState(true)
-    console.log('index 渲染')
-    return <div>
-        <CompA />
-        <CompB />
-        <CompC />
-        {isShow &&  <CompD />}
-        <button onClick={() => setShow(!isShow)} >动态挂载D</button>
-    </div>
-}
-
-function Root(){
-    const store = useCreateStore(function(state,action){
-        const { type , payload } =action
-        if(type === 'setA' ){
-            return {
-                ...state,
-                mesA:payload
-            }
-        }else if(type === 'setB'){
-            return {
-                ...state,
-                mesB:payload
-            }
-        }else if(type === 'clear'){ //清空
-            return  { mesA:'',mesB:'' }
-        }
-        else{
-            return state
-        }
-    },
-    { mesA:'111',mesB:'111' })
-    return <div>
-        <ReduxContext.Provider value={store} >
-            <Index/>
-        </ReduxContext.Provider>
-    </div>
-}
+// function CompD(){
+//     const [ ,dispatch  ] = useConnect( )
+//     console.log('D 组件更新')
+//     return <div className="component_box" >
+//         <p> 组件D</p>
+//         <button onClick={()=> dispatch({ type:'clear' })} > 清空 </button>
+//     </div>
+// }
 
 
-export default Root
+// function  Index(){
+//     const [ isShow , setShow ] =  React.useState(true)
+//     console.log('index 渲染')
+//     return <div>
+//         <CompA />
+//         <CompB />
+//         <CompC />
+//         {isShow &&  <CompD />}
+//         <button onClick={() => setShow(!isShow)} >动态挂载D</button>
+//     </div>
+// }
+
+// function Root(){
+//     const store = useCreateStore(function(state,action){
+//         const { type , payload } =action
+//         if(type === 'setA' ){
+//             return {
+//                 ...state,
+//                 mesA:payload
+//             }
+//         }else if(type === 'setB'){
+//             return {
+//                 ...state,
+//                 mesB:payload
+//             }
+//         }else if(type === 'clear'){ //清空
+//             return  { mesA:'',mesB:'' }
+//         }
+//         else{
+//             return state
+//         }
+//     },
+//     { mesA:'111',mesB:'111' })
+//     return <div>
+//         <ReduxContext.Provider value={store} >
+//             <Index/>
+//         </ReduxContext.Provider>
+//     </div>
+// }
+
+
+// export default Root

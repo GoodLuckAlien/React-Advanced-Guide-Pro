@@ -25,6 +25,7 @@ import MiniRouter from './page/mini-router/index'
 import CustomModel from './page/customModel/index'
 import Verification from './page/formData/index'
 import CustomHooks from './page/customHooks/index'
+import SourceCode  from './page/sourceCode/index'
 import './app.scss'
 
 
@@ -122,9 +123,14 @@ const menusList = [
     path:'/customMedol',
     component:CustomModel
   },{
-    name:'26_Custom_Hooks',
+    name:'26_27_Custom_Hooks',
     path:'/customHooks',
-    component:CustomHooks, 
+    component:CustomHooks
+  },
+  {
+    name:'28_Source_Code',
+    path:'/sourceCode',
+    component:SourceCode
   }
 ]
 
