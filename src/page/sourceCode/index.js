@@ -3,8 +3,8 @@ import React , { useContext , useState , useRef, useEffect, useLayoutEffect, use
 const newContext = React.createContext(null)
 
 /* ① React Hooks 必须在函数组件内部执行？，React 如何能够监听 React Hooks 在外部执行并抛出异常。  */
-const value = useContext(newContext)
-console.log(value)
+// const value = useContext(newContext)
+// console.log(value)
 
 // function Index(props){
 //     const [ number, setNumber ] = useState(0)
