@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 
 import { Provider, connect } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
@@ -23,7 +23,7 @@ function InfoReducer(state = {}, action) {
     case 'SET':
       return {
         ...state,
-        ...payload
+        payload:payload
       }
     default:
       return state
@@ -72,11 +72,11 @@ const Store = createStore(rootReducer, { number: 1, info: { name: null } }, root
 // import Children from './page/home/index'
 
 /* A组件 */
-function ComponentA({ toCompB, compBsay }) {
+function ComponentA({ toCompB, info }) {
   const [CompAsay, setCompAsay] = useState('')
   return <div className="box" >
     <p>我是组件A</p>
-    <div> B组件对我说：{compBsay} </div>
+    <div> B组件对我说：{info} </div>
         我对B组件说：<input onChange={(e) => setCompAsay(e.target.value)}
             placeholder="CompAsay"
                />
@@ -84,22 +84,23 @@ function ComponentA({ toCompB, compBsay }) {
   </div>
 }
 /* 映射state中CompBsay  */
-const CompAMapStateToProps = state => ({ compBsay: state.info.compBsay })
+const CompAMapStateToProps = state => state.info
 /* 映射toCompB方法到props中 */
 const CompAmapDispatchToProps = dispatch => ({ toCompB: (mes) => dispatch({ type: 'SET', payload: { compAsay: mes } }) })
 /* connect包装组件A */
-export const CompA = connect(CompAMapStateToProps, CompAmapDispatchToProps)(ComponentA)
+export const CompA = connect(CompAMapStateToProps, CompAmapDispatchToProps)((ComponentA))
 
 /* B组件 */
 class ComponentB extends React.Component {
   state={ compBsay:'' }
   handleToA=()=>{
-     this.props.dispatch({ type: 'SET', payload: { compBsay: this.state.compBsay } })
+     this.props.compAsay.compBsay = 111111
+     this.props.dispatch({ type: 'SET', payload: { info: {...this.props.compAsay} } })
   }
   render() {
     return <div className="box" >
       <p>我是组件B</p>
-      <div> A组件对我说：{this.props.compAsay} </div>
+      <div> A组件对我说：{this.props.compAsay.compAsay} </div>
        我对A组件说：<input onChange={(e)=> this.setState({ compBsay: e.target.value  })}
            placeholder="CompBsay"
               />
@@ -108,7 +109,7 @@ class ComponentB extends React.Component {
   }
 }
 /* 映射state中 CompAsay  */
-const CompBMapStateToProps = state => ({ compAsay: state.info.compAsay })
+const CompBMapStateToProps = state => ({ compAsay: state.info })
 export const CompB =  connect(CompBMapStateToProps)(ComponentB)
 
 /* 共享数据 */

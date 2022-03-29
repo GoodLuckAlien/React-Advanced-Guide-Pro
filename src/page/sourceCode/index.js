@@ -1,6 +1,13 @@
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable no-unused-vars */
 import React , { useContext , useState , useRef, useEffect, useLayoutEffect, useMemo } from 'react'
 
+import Text from './test'
 const newContext = React.createContext(null)
+
+
+
+
 
 /* ① React Hooks 必须在函数组件内部执行？，React 如何能够监听 React Hooks 在外部执行并抛出异常。  */
 // const value = useContext(newContext)
@@ -30,8 +37,19 @@ const newContext = React.createContext(null)
 // }
 
 
-function Index(){
-    return <div>《React进阶实践指南》</div>
+function Test(num){
+   console.log(num)
+   useEffect(()=>{
+       console.log('1111')
+   },[])
+   return <div>《React 进阶实践指南》</div>
 }
 
-export default Index
+export default function Index(){
+    const [ isShow , setIsShow  ]= useState(false)
+    console.log('processprocessprocessprocess',process.cwd())
+    return <div>
+           <button onClick={() => setIsShow(!isShow)} >点击</button>
+           {isShow ? <Test num={1} /> : <Test num={2} />}
+         </div>
+}

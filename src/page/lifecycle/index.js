@@ -12,7 +12,7 @@ import './style.scss'
 // class Index extends React.Component{
 //     node = null
 //     constructor(props){
-    
+
 //        super(props)
 //        this.state={
 //            numer:1,
@@ -24,13 +24,13 @@ import './style.scss'
 //         ReactDOM.render(<Text/> , this.node )
 //     }
 //     handerClick=()=>{
-//        /* 点击卸载容器 */ 
+//        /* 点击卸载容器 */
 //        const state =  ReactDOM.unmountComponentAtNode(this.node)
 //        console.log(state)
 //     }
 //     render(){
-//         return <div  style={{ marginTop:'80px' }}  > 
-//              <div ref={ ( node ) => this.node = node  }  ></div>  
+//         return <div  style={{ marginTop:'80px' }}  >
+//              <div ref={ ( node ) => this.node = node  }  ></div>
 //             <button onClick={ this.handerClick } >click me</button>
 //         </div>
 //     }
@@ -38,15 +38,15 @@ import './style.scss'
 
 
 // TODO: component
-// class Index extends React.Component{  
+// class Index extends React.Component{
 //     node = null
 //     componentDidMount(){
-       
-//     } 
+
+//     }
 //     handerClick=()=>{
 
 //     }
-    
+
 //     render(){
 //         return <div>
 //             <div>我是子组件</div>
@@ -64,7 +64,7 @@ import './style.scss'
 //     useEffect(()=>{
 //         console.log('useEffect执行')
 //     },[])
-   
+
 //     return <div>
 //         { isRender && <Index  setLoading={setLoading} />  }
 //         <div>
@@ -72,7 +72,7 @@ import './style.scss'
 //         </div>
 //         <button onClick={ ()=> { setRender(true) } } >渲染子组件</button>
 //     </div>
-// } 
+// }
 
 export function debounce(fn, time) {
     let timer = null;
@@ -109,7 +109,7 @@ export function debounce(fn, time) {
     // static getDerivedStateFromProps(newProps){
     //     const { type } = newProps
     //     switch(type){
-    //         case 'fruit' : 
+    //         case 'fruit' :
     //         return { list:['苹果','香蕉','葡萄' ] }
     //         case 'vegetables':
     //         return { list:['菠菜','西红柿','土豆']}
@@ -124,7 +124,7 @@ export function debounce(fn, time) {
 /* TODO: 生命周期 */
 // function PropReducer(type){
 //     switch(type){
-//         case 'fruit' : 
+//         case 'fruit' :
 //         return { list:['苹果','香蕉','葡萄' ] }
 //         case 'vegetables':
 //         return { list:['菠菜','西红柿','土豆']}
@@ -150,15 +150,15 @@ export function debounce(fn, time) {
 //     //     console.log('父组件render执行') /*  ① 监听父组件执行render  */
 //     //     setTimeout(()=>{  /* ② 异步控制 props 改变 派生出 state 的修改  */
 //     //         // switch(type){
-//     //         //     case 'fruit' : 
-//     //         //     this.setState({list:['苹果','香蕉','葡萄' ] }) 
+//     //         //     case 'fruit' :
+//     //         //     this.setState({list:['苹果','香蕉','葡萄' ] })
 //     //         //     break
 //     //         //     case 'vegetables':
-//     //         //     this.setState({list:['苹果','香蕉','葡萄' ] }) 
+//     //         //     this.setState({list:['苹果','香蕉','葡萄' ] })
 //     //         //     break
 //     //         // }
 //     //     },0)
-        
+
 //     // }
 //     node = null
 //     getSnapshotBeforeUpdate(){
@@ -189,10 +189,10 @@ export function debounce(fn, time) {
 //     async componentDidMount(){
 //         this.node.addEventListener('click',()=>{
 //             /* 事件监听 */
-//         }) 
+//         })
 //         const data = await this.getData() /* 数据请求 */
 //     }
-    
+
 //     render(){
 //         console.log(' prop渲染')
 //         return <div>
@@ -211,10 +211,10 @@ export function debounce(fn, time) {
 //     handleChange=()=>{
 //         /* 模拟异步调用 */
 //         setTimeout(()=>{
-//             this.setState({ type : 'vegetables'   }) 
+//             this.setState({ type : 'vegetables'   })
 //         },0)
 //     }
-  
+
 //     render(){
 //         const { mode  ,number, type} = this.state
 //         return <div>
@@ -225,7 +225,7 @@ export function debounce(fn, time) {
 //            <button onClick={ ()=> this.setState({ mode : mode ==='Receive' ? 'Derived' : 'Receive' })   }  >切换模式</button>
 //         </div>
 //     }
-// } 
+// }
 
 // function FunctionLifecycle(props){
 //     const [ num , setNum ] = useState(0)
@@ -286,7 +286,9 @@ export function debounce(fn, time) {
 
 function Item({item}) {
     return  <div className="goods_item" >
-        <img src={item.giftImage} className="item_image" />
+        <img className="item_image"
+            src={item.giftImage}
+        />
         <div className="item_content" >
             <div className="goods_name" >
                 {item.giftName}
@@ -299,7 +301,7 @@ function Item({item}) {
                     </div>
                 </div>
             </div>
-            <img className='go_share  go_text' />
+            <img className="go_share  go_text" />
         </div>
     </div>
 }
@@ -327,7 +329,7 @@ class ScrollView extends React.Component{
     /* 判断滚动条是否到底部 */
     handerScrolltolower(){
        const { scrolltolower } = this.props
-       const { scrollHeight , scrollTop ,  offsetHeight } = this.node 
+       const { scrollHeight , scrollTop ,  offsetHeight } = this.node
        if(scrollHeight === scrollTop + offsetHeight){ /* 到达容器底部位置 */
            scrolltolower && scrolltolower()
        }
@@ -340,13 +342,14 @@ class ScrollView extends React.Component{
         this.state={ /* 初始化 Data */
             list:[]
         }
-        this.handerScrolltolower = debounce(this.handerScrolltolower,200) /* 防抖处理 */               
+        this.handerScrolltolower = debounce(this.handerScrolltolower,200) /* 防抖处理 */
     }
     /* 接收props, 合并到state */
     static getDerivedStateFromProps(newProps){
         const { data } = newProps
-        return { 
-            list : data.list || [] ,
+        console.log(data,'asdsadsadsad')
+        return {
+            list : data.list || []
         }
     }
     /* 性能优化，只有列表数据变化，渲染列表 */
@@ -363,7 +366,9 @@ class ScrollView extends React.Component{
     }
     /* 绑定事件监听器 - 监听scorll事件 */
     componentDidMount() {
-        this.node.addEventListener('scroll',this.handerScroll)
+        this.node.addEventListener('scroll',()=>{
+            console.log('-------滚动条滚动------')
+        })
     }
     /* 解绑事件监听器 */
     componentWillUnmount(){
@@ -372,8 +377,10 @@ class ScrollView extends React.Component{
     render() {
         const { list } = this.state
         const { component } = this.props
-        return <div className="list_box"  ref={(node) => this.node = node }  >
-            <div >     
+        return <div className="list_box"
+            ref={(node) => this.node = node}
+               >
+            <div >
                 {
                     list.map((item) => (
                         React.createElement(component,{ item , key: item.id  })
@@ -384,17 +391,20 @@ class ScrollView extends React.Component{
     }
 }
 
-export default function () { 
+export default function () {
+    console.log('----111-----')
     const [ data , setData ] = useState({ list:[],page:0,pageCount:1  }) /* 记录列表数据 */
     /* 请求数据 */
     const getData = async ()=>{
         if(data.page === data.pageCount) return console.log('没有数据了～')
         const res = await fetchData(data.page + 1)
-        if(res.code === 0) setData({
+        const payload = {
             ...res,
-            list:res.page === 1 ?  res.list : data.list.concat(res.list) 
-        })
-    } 
+            list:res.page === 1 ?  res.list : data.list.concat(res.list)
+        }
+        console.log(payload,'payloadpayloadpayload')
+        if(res.code === 0) setData(payload)
+    }
     /* 滚动到底部触发 */
     const handerScrolltolower = () => {
         console.log('scroll已经到底部')
@@ -404,11 +414,11 @@ export default function () {
     useEffect(()=>{
         getData()
     },[])
-    return <ScrollView 
-            data={ data } 
-            component={ Item }  /* Item 渲染的单元组件 */
-            scrolltolower={ handerScrolltolower } 
-            scroll={()=>{}} 
-        />
+    return <ScrollView
+        component={Item}
+        data={data}  /* Item 渲染的单元组件 */
+        scroll={()=>{}}
+        scrolltolower={handerScrolltolower}
+           />
 
 }

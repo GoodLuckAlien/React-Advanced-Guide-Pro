@@ -26,10 +26,11 @@ import CustomModel from './page/customModel/index'
 import Verification from './page/formData/index'
 import CustomHooks from './page/customHooks/index'
 import SourceCode  from './page/sourceCode/index'
+import BeginWork from './page/beginWork/index'
 import './app.scss'
 
 
-
+console.log(require.context,'require.context()')
 const menusList = [
   {
     name: '2_认识Jsx',
@@ -131,6 +132,11 @@ const menusList = [
     name:'28_Source_Code',
     path:'/sourceCode',
     component:SourceCode
+  },
+  {
+    name:'30_beginWork',
+    path:'/beginWork',
+    component:BeginWork
   }
 ]
 

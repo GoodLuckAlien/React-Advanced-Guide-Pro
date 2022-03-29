@@ -10,7 +10,7 @@ const devConfig = {
     hot: true,
     historyApiFallback: true,
     publicPath: '/',
-    port: 8888, /* 服务器端口 */
+    port: 7777, /* 服务器端口 */
     inline: true,
     proxy: {  /* 代理服务器 */
     //   "/api": {
