@@ -1,24 +1,20 @@
-const webpack = require('webpack')
-const path = require('path')
+const webpack = require("webpack");
+const path = require("path");
 
 const devConfig = {
-  devtool: 'cheap-module-eval-source-map',
-  mode: 'development',
+  mode: "development",
   devServer: {
-    contentBase: path.resolve(__dirname,'../dist'),
-    open: true, /* 自动打开浏览器 */
+    open: true /* 自动打开浏览器 */,
     hot: true,
     historyApiFallback: true,
-    publicPath: '/',
-    port: 7777, /* 服务器端口 */
-    inline: true,
-    proxy: {  /* 代理服务器 */
-    //   "/api": {
-    //     target: "http://localhost:9092"
-    //   }
-    }
+    port: 7778 /* 服务器端口 */,
+    proxy: {
+      /* 代理服务器 */
+      //   "/api": {
+      //     target: "http://localhost:9092"
+      //   }
+    },
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
-}
+};
 
-module.exports = devConfig
+module.exports = devConfig;

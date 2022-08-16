@@ -6,7 +6,7 @@
   "scripts": {
     "test": "webpack  --config ./config/webpack.base.js",
     "start": "webpack-dev-server --config ./config/webpack.base.js",
-    "build": "webpack --env.production --config ./config/webpack.base.js"
+    "build": "webpack  --config ./config/webpack.base.js"
   },
   "author": "zhaolin",
   "license": "ISC",
@@ -30,29 +30,35 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/plugin-syntax-class-properties": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
-    "@babel/plugin-syntax-class-properties": "^7.12.1",
     "@types/webpack-env": "^1.15.1",
-    "core-js": "^2.6.5",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.13.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^2.6.5",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
     "file-loader": "^6.0.0",
     "happypack": "^5.0.1",
-    "node-sass": "^4.13.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "postcss-loader": "^3.0.0",
     "rux-react-webpack-plugin": "^1.0.3",
-    "sass-loader": "^7.3.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
     "style-loader": "^0.23.1",
     "ts-loader": "^4.5.0",
     "typescript": "^3.9.3",
-    "url-loader": "^4.0.0"
+    "url-loader": "^4.0.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
   }
 }
