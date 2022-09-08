@@ -195,7 +195,7 @@ import './index.scss'
 //     }
 // }
 // /* 程序员 */
-// class programmer extends Person{
+// class Programmer extends Person{
 //     constructor(props){
 //         super(props)
 //         console.log('hello , i am Programmer too')
