@@ -140,11 +140,11 @@ import { renderRoutes } from 'react-router-config'
 
 
 // TODO: 自定义路由
-function CustomRouter(props){
-    const permissionList = useContext(permissionContext) /* 获取权限列表 */
-    const haspermission = matchPermission(permissionList,props.path)  /* 获取是否具权限 */
-    return haspermission ? <Route  {...props}  /> : <Redirect  to="/noPermission" />
-}
+// function CustomRouter(props){
+//     const permissionList = useContext(permissionContext) /* 获取权限列表 */
+//     const haspermission = matchPermission(permissionList,props.path)  /* 获取是否具权限 */
+//     return haspermission ? <Route  {...props}  /> : <Redirect  to="/noPermission" />
+// }
 
 
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 //todo
 import React, { useState }   from 'react'
-import './index.scss'
+import './index.less'
 
 
 

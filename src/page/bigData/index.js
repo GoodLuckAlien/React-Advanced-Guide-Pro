@@ -1,6 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import React, { useState , useEffect , useRef } from 'react'
-import './style.scss'
+import './style.less'
 
 /* 获取随机颜色 */
 function getColor(){

@@ -1,5 +1,5 @@
 import React from 'react'
-import './style.scss'
+import './style.less'
 
 function VirtualList(){
    const [ dataList,setDataList ] = React.useState([])  /* 保存数据源 */

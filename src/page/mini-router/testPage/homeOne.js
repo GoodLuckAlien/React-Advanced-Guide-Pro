@@ -1,7 +1,6 @@
 import React from 'react'
 import withRouter from '../hoc/withRouter'
 
-@withRouter
 class HomeOne extends React.Component{
     RouteGo=()=>{
         const { history } = this.props
@@ -15,4 +14,4 @@ class HomeOne extends React.Component{
     }
 }
 
-export default HomeOne
+export default withRouter(HomeOne)

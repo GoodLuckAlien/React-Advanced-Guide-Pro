@@ -7,8 +7,8 @@ import {
     SyncOutlined,
     LoadingOutlined,
   } from '@ant-design/icons';
-import './index.scss'
-import '../state/index.scss'
+import './index.less'
+import '../state/index.less'
 
 // TODO: 老版本 context
 // class ConsumerDemo extends React.Component{

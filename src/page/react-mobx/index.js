@@ -1,7 +1,7 @@
 import React from 'react'
 import {  Provider, observer ,inject } from 'mobx-react'
 
-import '../react-redux/index.scss'
+import '../react-redux/index.less'
 /*  TODO: 状态管理 */
 // import Root from './mobx'
 // export default function Index(){
@@ -47,8 +47,6 @@ export default function Index(){
     </Provider>
 }
 
-@inject('Communi')
-@observer
 class ComponentA extends React.Component{
     state={
         CompAsay:''
@@ -72,9 +70,6 @@ class ComponentA extends React.Component{
 
 
 
-
-@inject('Communi')
-@observer
 class ComponentB extends React.Component{
    state={
       compBsay:''

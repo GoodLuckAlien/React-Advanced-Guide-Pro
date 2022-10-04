@@ -38,7 +38,7 @@ class Index extends React.Component{
         const flatChildren = React.Children.toArray(children)
         console.log(flatChildren)
         /* 第二步 ： 除去文本节点 */
-        const newChildren :any= []
+        const newChildren = []
         React.Children.forEach(flatChildren,(item)=>{
             if(React.isValidElement(item)) newChildren.push(item)
         })

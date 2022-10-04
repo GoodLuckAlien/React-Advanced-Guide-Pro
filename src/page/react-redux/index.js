@@ -3,7 +3,7 @@ import React, { memo, useState } from 'react'
 import { Provider, connect } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 
-import './index.scss'
+import './index.less'
 
 /* number Reducer */
 function numberReducer(state = 1, action) {

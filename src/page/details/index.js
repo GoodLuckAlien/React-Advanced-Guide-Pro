@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import './index.scss'
+import './index.less'
 
 export function throttle (fn, time) {
     let previous = 0

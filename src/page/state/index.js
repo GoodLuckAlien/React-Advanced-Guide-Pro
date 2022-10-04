@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 
-import './index.scss'
+import './index.less'
 
 
 import ReactDOM from 'react-dom'

@@ -2,7 +2,7 @@ import React , { Profiler , StrictMode ,Suspense  } from 'react'
 import { BrowserRouter as Router , useHistory   } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { KeepaliveRouterSwitch ,KeepaliveRoute} from 'react-keepalive-router'
-import 'antd/dist/antd.css'
+// import 'antd/dist/antd.css'
 
 import JSX from './page/jsx'
 import Lifecycle from './page/lifecycle'
@@ -27,7 +27,7 @@ import Verification from './page/formData/index'
 import CustomHooks from './page/customHooks/index'
 import SourceCode  from './page/sourceCode/index'
 import BeginWork from './page/beginWork/index'
-import './app.scss'
+import './app.less'
 
 
 console.log(require.context,'require.context()')

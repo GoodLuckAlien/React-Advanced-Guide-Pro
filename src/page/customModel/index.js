@@ -2,7 +2,7 @@
 import React, { useMemo, useState } from "react";
 
 import Modal from "./component/index";
-import "./style.scss";
+import "./style.less";
 
 // /* 挂载方式调用modal */
 export default function Index() {

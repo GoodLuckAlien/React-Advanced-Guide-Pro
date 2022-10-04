@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './style.scss'
+import './style.less'
 
 function Index({ children , label ,labelWidth , required ,height}){
     return <div className="form-label"

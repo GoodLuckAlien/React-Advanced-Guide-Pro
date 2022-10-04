@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-max-props-per-line */
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import "../style.scss";
+import "../style.less";
 
 import Dialog from "./dialog";
 class Modal extends React.PureComponent {

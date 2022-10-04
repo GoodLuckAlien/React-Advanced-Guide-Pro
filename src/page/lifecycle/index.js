@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 // import ReactDOM from 'react-dom'
 // import { SyncOutlined } from '@ant-design/icons'
-console.log('React版本：'+React.version)
-import './style.scss'
+import './style.less'
+import { listData } from '../../mock'
 
 
 // function Text(){
@@ -306,7 +306,7 @@ function Item({item}) {
     </div>
 }
 
-import { listData } from '../../mock'
+
 const fetchData = (page)=> {
   return new Promise((resolve)=>{
       resolve({

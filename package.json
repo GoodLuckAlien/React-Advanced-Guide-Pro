@@ -1,20 +1,15 @@
 {
-  "name": "react-keepalive-router-demo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "webpack  --config ./config/webpack.base.js",
-    "start": "webpack-dev-server --config ./config/webpack.base.js",
-    "build": "webpack  --config ./config/webpack.base.js"
-  },
-  "author": "zhaolin",
-  "license": "ISC",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "@types/react": "^16.9.25",
     "@vue/reactivity": "^3.0.7",
-    "antd": "^4.16.3",
+    "antd": "^4.23.4",
     "hoist-non-react-statics": "^3.3.2",
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
@@ -22,43 +17,37 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-keepalive-router": "^1.1.3",
+    "react-redux": "^8.0.4",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "5.0.1",
     "react-tiny-virtual-list": "^2.2.0",
-    "ruxjs": "0.0.2"
+    "redux": "^4.2.0",
+    "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
-    "@babel/plugin-syntax-class-properties": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.4",
-    "@babel/preset-react": "^7.0.0",
-    "@types/webpack-env": "^1.15.1",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-import": "^1.13.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^2.6.5",
-    "css-hot-loader": "^1.4.4",
-    "css-loader": "^3.0.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.19.0",
-    "file-loader": "^6.0.0",
-    "happypack": "^5.0.1",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.6.1",
-    "postcss-loader": "^3.0.0",
-    "rux-react-webpack-plugin": "^1.0.3",
-    "sass": "^1.53.0",
-    "sass-loader": "^13.0.2",
-    "style-loader": "^0.23.1",
-    "ts-loader": "^4.5.0",
-    "typescript": "^3.9.3",
-    "url-loader": "^4.0.0",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

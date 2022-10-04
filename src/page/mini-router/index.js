@@ -5,7 +5,7 @@ import { Router, Route, useHistory, useListen, Switch } from './router'
 import Detail from './testPage/detail'
 import Home  from './testPage/home'
 import List from './testPage/list'
-import './index.scss'
+import './index.less'
 
 const menusList = [
     {

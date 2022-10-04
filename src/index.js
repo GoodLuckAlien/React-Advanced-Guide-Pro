@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './app'
-// import rux from 'ruxjs'
-import './assets/styles/common.scss'
+// import './assets/styles/common.scss'
 
 
 
